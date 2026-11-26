@@ -20,14 +20,36 @@ class TestReseau(unittest.TestCase):
         # Verifier que le noeud d'entree est correct
         self.assertEqual(r.noeud_entree, 0)
 
+    #def test_ajout_noeud(self):
+    #    # TODO
+    #    self.fail()
     def test_ajout_noeud(self):
-        # TODO
-        self.fail()
 
+        r = Reseau()
+
+        # Ajouter un noeud
+        r.noeuds[0] = (0, 0)
+
+        # Verifier que le noeud existe
+        self.assertEqual(r.noeuds[0], (0, 0))
+
+    #def test_ajout_arc(self):
+    #    # TODO
+    #    self.fail()
     def test_ajout_arc(self):
-        # TODO
-        self.fail()
 
+        r = Reseau()
+
+        # Creer deux noeuds
+        r.noeuds[0] = (0, 0)
+        r.noeuds[1] = (0, 1)
+
+        # Ajouter une connexion
+        r.arcs.append((0, 1))
+
+        # Verifier que la connexion existe
+        self.assertIn((0, 1), r.arcs)
+        
     def test_validation_correcte(self):
         r = Reseau()
         r.noeuds[0] = (0, 0)
