@@ -32,4 +32,6 @@ if __name__ == "__main__":
     else:
         print("Pas de configuration valide optimale trouvée.")
 
+    reseau.afficher()  
+
 
