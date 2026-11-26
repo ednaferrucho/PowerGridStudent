@@ -33,5 +33,6 @@ if __name__ == "__main__":
         print("Pas de configuration valide optimale trouvée.")
 
     reseau.afficher()  
+    print("travail dans la branch edna_branch_1")
 
 
