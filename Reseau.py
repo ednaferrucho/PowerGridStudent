@@ -153,9 +153,14 @@ class Reseau:
     def configurer(self, t: Terrain):
         self.noeud_entree, self.noeuds, self.arcs  = self.strat.configurer(t)
 
+#   def afficher(self) -> None:
+#        # TODO
+#        pass
+
     def afficher(self) -> None:
-        # TODO
-        pass
+        print('noeud_entree =' , self.noeud_entree)
+        print('noeuds =', self.noeuds)
+        print('arcs =', self.arcs)
 
     def afficher_avec_terrain(self, t: Terrain) -> None:
         for ligne, l in enumerate(t.cases):
