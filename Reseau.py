@@ -33,9 +33,80 @@ class Reseau:
     def set_strategie(self, strat: StrategieReseau):
         self.strat = strat
 
+#    def valider_reseau(self) -> bool:
+#        # TODO
+#       return False
+
     def valider_reseau(self) -> bool:
-        # TODO
-        return False
+
+        # Verifier que le noeud d'entree existe
+        if self.noeud_entree not in self.noeuds:
+            return False
+
+        # Verifier que deux noeuds n'occupent pas la meme position
+        positions = []
+
+        for n in self.noeuds:
+            position = self.noeuds[n]
+
+            if position in positions:
+                return False
+
+            positions.append(position)
+
+        # Creer un dictionnaire pour stocker les voisins de chaque noeud
+        voisins = {}
+
+        for n in self.noeuds:
+            voisins[n] = []
+
+        # Verifier les connexions entre les noeuds
+        for n1, n2 in self.arcs:
+
+            # Verifier que les deux noeuds sont differents
+            if n1 == n2:
+                return False
+
+            # Verifier que les deux noeuds existent
+            if n1 not in self.noeuds or n2 not in self.noeuds:
+                return False
+
+            # Recuperer les positions des deux noeuds
+            p = self.noeuds[n1]
+            q = self.noeuds[n2]
+
+            # Calculer la distance entre les deux noeuds
+            distance = abs(p[0] - q[0]) + abs(p[1] - q[1])
+
+            # Les noeuds doivent etre voisins horizontalement ou verticalement
+            if distance != 1:
+                return False
+
+            # Enregistrer les connexions dans les deux sens
+            voisins[n1].append(n2)
+            voisins[n2].append(n1)
+
+        # Verifier que tous les noeuds sont connectes au noeud d'entree
+        visites = []
+        a_parcourir = [self.noeud_entree]
+
+        while len(a_parcourir) > 0:
+
+            n = a_parcourir.pop()
+
+            if n not in visites:
+                visites.append(n)
+
+                # Ajouter les voisins qui n'ont pas encore ete visites
+                for voisin in voisins[n]:
+                    if voisin not in visites and voisin not in a_parcourir:
+                        a_parcourir.append(voisin)
+
+        # Verifier que tous les noeuds ont ete visites
+        if len(visites) == len(self.noeuds):
+            return True
+        else:
+            return False
 
     def valider_distribution(self, t: Terrain) -> bool:
         # TODO
@@ -85,4 +156,3 @@ class Reseau:
             else:
                 cout += 1
         return cout
-
