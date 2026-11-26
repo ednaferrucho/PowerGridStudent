@@ -7,9 +7,18 @@ from Terrain import Terrain, Case
 
 class TestReseau(unittest.TestCase):
 
+    #def test_definition_entree(self):
+    #    # TODO
+    #    self.fail()
+
     def test_definition_entree(self):
-        # TODO
-        self.fail()
+        r = Reseau()
+        # Creer un noeud
+        r.noeuds[0] = (0, 0)
+        # Definir le noeud d'entree
+        r.definir_noeud_entree(0)
+        # Verifier que le noeud d'entree est correct
+        self.assertEqual(r.noeud_entree, 0)
 
     def test_ajout_noeud(self):
         # TODO
