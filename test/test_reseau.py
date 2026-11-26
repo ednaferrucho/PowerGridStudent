@@ -16,7 +16,8 @@ class TestReseau(unittest.TestCase):
         # Creer un noeud
         r.noeuds[0] = (0, 0)
         # Definir le noeud d'entree
-        r.definir_noeud_entree(0)
+        #r.definir_noeud_entree(0)
+        r.definir__entree(0)
         # Verifier que le noeud d'entree est correct
         self.assertEqual(r.noeud_entree, 0)
 
