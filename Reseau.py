@@ -108,9 +108,47 @@ class Reseau:
         else:
             return False
 
+#    def valider_distribution(self, t: Terrain) -> bool:
+#        # TODO
+#        return False
+
     def valider_distribution(self, t: Terrain) -> bool:
-        # TODO
-        return False
+
+        # Verifier que le reseau est valide
+        if not self.valider_reseau():
+            return False
+
+        # Verifier la position du noeud d'entree
+        if self.noeuds[self.noeud_entree] != t.get_entree():
+            return False
+
+        # Recuperer les positions de tous les noeuds
+        positions = []
+
+        for n in self.noeuds:
+            positions.append(self.noeuds[n])
+
+        # Verifier que tous les noeuds sont dans le terrain
+        for position in positions:
+
+            i = position[0]
+            j = position[1]
+
+            # Verifier que la ligne existe
+            if i < 0 or i >= len(t.cases):
+                return False
+
+            # Verifier que la colonne existe
+            if j < 0 or j >= len(t.cases[i]):
+                return False
+
+        # Verifier que chaque client possede un noeud
+        for client in t.get_clients():
+
+            if client not in positions:
+                return False
+
+        return True
 
     def configurer(self, t: Terrain):
         self.noeud_entree, self.noeuds, self.arcs  = self.strat.configurer(t)
