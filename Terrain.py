@@ -57,6 +57,8 @@ class Terrain:
     #   # TODO
     #    return None
 
+    print("premier modification")
+
     def get_entree(self) -> tuple[int, int]:
         for i, l in enumerate(self.cases):
             for j, c in enumerate(l):
